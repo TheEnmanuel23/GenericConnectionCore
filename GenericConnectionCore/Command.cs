@@ -3,7 +3,12 @@ using System.Data;
 
 namespace GenericConnectionCore
 {
-    internal class Command
+    #if DEBUG
+        public
+    #else
+            internal
+    #endif
+    class Command
     {
         public virtual IDataReader ExecuteCommand(string sql, IDbConnection connection)
         {

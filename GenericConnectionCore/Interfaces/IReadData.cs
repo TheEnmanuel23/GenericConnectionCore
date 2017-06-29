@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Data;
+using System.Collections.Generic;
 
 namespace GenericConnectionCore.Interfaces
 {
     public interface IReadData
     {
-        ICollection<T> ReadData<T>(IReadData dataReader, IEntitySetting entity);
+        ICollection<T> ReadData<T>(IDataReader dataReader, IEntitySetting entity);
     }
 }

@@ -55,7 +55,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GetDataTest.cs" />
     <Compile Include="ProcessDataTest.cs" />
-    <Compile Include="CommandTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GenericConnectionCore\GenericConnectionCore.csproj">
+      <Project>{e07db888-2273-444a-a716-91de63c4785e}</Project>
+      <Name>GenericConnectionCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

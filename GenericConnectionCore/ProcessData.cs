@@ -5,12 +5,13 @@ using System.Data;
 
 namespace GenericConnectionCore
 {
-    internal class ProcessData : Command, IReadData
+    #if DEBUG
+        public
+    #else
+        internal
+    #endif 
+    class ProcessData : Command, IReadData
     {
-        public ICollection<T> ReadData<T>(IReadData dataReader, IEntitySetting entity)
-        {
-            throw new NotImplementedException();
-        }
         public ICollection<T> ReadData<T>(IDataReader dataReader, IEntitySetting entity)
         {
             try
