@@ -3,12 +3,37 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using Logfile;
+using System.Linq;
 
 namespace GenericConnectionCore
 {
     public class GetData
     {
         private readonly ProcessData processData;
+        public GetData()
+        {
+            this.processData = new ProcessData();
+        }
+        public virtual List<Dictionary<string, object>> GetDictionary(string sql, IDbConnection connection)
+        {
+            WriteInDiskLogfile writeLog = new WriteInDiskLogfile();
+            try
+            {
+                IDataReader reader = processData.ExecuteCommand(sql, connection);
+                writeLog.Log("Successful data extraction process");                
+                return processData.ReadDataHowDictionary(reader);
+            }
+            catch (Exception ex)
+            {
+                WriteLog(writeLog, "Error in data extraction event", 12, ex.GetType(), "Method <Data>");
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+                connection.Dispose();
+            }
+        }
         public virtual ICollection<T> Data<T>(string sql, IEntitySetting entity, IDbConnection connection)
         {
             WriteInDiskLogfile writeLog = new WriteInDiskLogfile();
@@ -28,7 +53,6 @@ namespace GenericConnectionCore
                 connection.Close();
                 connection.Dispose();
             }
-
         }
         public virtual IDataReader GetDataReader(string sql, IDbConnection connection)
         {

@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>Generic.Connection.Core</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>GenericConnectionCore</title>
     <authors>TheEnmanuel23</authors>
     <owners>TheEnmanuel23</owners>
     <projectUrl>https://github.com/TheEnmanuel23/GenericConnectionCore</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Project written in C# to connect to generic database provider</description>
-    <releaseNotes>Creating the first version of the GenericConnectionCore library.</releaseNotes>
+    <releaseNotes>The null value was corrected to obtain a data table.</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>Connection Generic Databases DB library oracle sqlserver mssql mysql</tags>
     <dependencies>

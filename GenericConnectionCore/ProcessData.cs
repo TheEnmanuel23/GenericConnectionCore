@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace GenericConnectionCore
 {
@@ -28,6 +29,7 @@ namespace GenericConnectionCore
                 throw new Exception("Error to read data");
             }
         }
+
         public virtual DataTable ReadData(IDataReader dataReader)
         {
             DataTable data = new DataTable();
@@ -46,6 +48,7 @@ namespace GenericConnectionCore
             }
             return data;
         }
+
         public override IDataReader ExecuteCommand(string sql, IDbConnection connection)
         {
             try
@@ -60,6 +63,17 @@ namespace GenericConnectionCore
             {
                 throw new Exception("Error en la extracción de datos, verifique la conexión y que el sistema de consultas esté correctamente configurado.");
             }
+        }
+
+        public virtual List<Dictionary<string, object>> ReadDataHowDictionary(IDataReader dataReader)
+        {
+            List<Dictionary<string, object>> listData = new List<Dictionary<string, object>> ();
+            while (dataReader.Read())
+            {
+                var dicData = Enumerable.Range(0, dataReader.FieldCount).ToDictionary(dataReader.GetName, dataReader.GetValue);
+                listData.Add(dicData);
+            }
+            return listData;
         }
     }
 }
